@@ -1,0 +1,38 @@
+# Telegram
+aiogram==3.13.1
+
+# Job queue
+arq==0.26.1
+
+# DB
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+alembic==1.14.0
+
+# Cache / Redis
+redis[hiredis]==5.2.1
+
+# Config
+pydantic==2.10.3
+pydantic-settings==2.7.0
+
+# HTTP client
+httpx==0.28.1
+
+# OpenAI LLM (also compatible with any OpenAI-compatible API)
+openai==1.59.0
+
+# Instagram collector
+instaloader==4.13.1
+
+# STT
+faster-whisper==1.1.0
+
+# OCR
+easyocr==1.7.2
+
+# Logging
+structlog==24.4.0
+
+# Utils
+python-dotenv==1.0.1
