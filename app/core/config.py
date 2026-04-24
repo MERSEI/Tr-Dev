@@ -55,6 +55,9 @@ class Settings(BaseSettings):
     # Analysis window
     analysis_window_hours: int = Field(24, alias="ANALYSIS_WINDOW_HOURS")
 
+    # LLM mock mode (run pipeline without real OpenAI key)
+    llm_mock: bool = Field(False, alias="LLM_MOCK")
+
     # Worker
     worker_concurrency: int = Field(4, alias="WORKER_CONCURRENCY")
 

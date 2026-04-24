@@ -189,7 +189,7 @@ async def analyze(
     warnings: list[str],
 ) -> AnalysisResult:
     # ── Mock mode ──────────────────────────────────────────────────────────
-    if os.getenv("LLM_MOCK", "false").lower() in ("true", "1", "yes"):
+    if settings.llm_mock or os.getenv("LLM_MOCK", "false").lower() in ("true", "1", "yes"):
         logger.info("llm_mock_mode_enabled")
         return _mock_result(
             raw_input, handle, analysis_window,

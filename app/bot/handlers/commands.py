@@ -72,15 +72,22 @@ async def cmd_analyze(message: Message) -> None:
         )
 
     # Enqueue via ARQ
-    import redis.asyncio as aioredis
+    from urllib.parse import urlparse
     from arq import create_pool
     from arq.connections import RedisSettings
 
     from app.core.config import settings
 
-    redis_pool = await create_pool(RedisSettings.from_dsn(settings.redis_url))
+    _p = urlparse(settings.redis_url)
+    _rs = RedisSettings(
+        host=_p.hostname or "127.0.0.1",
+        port=_p.port or 6379,
+        database=int(_p.path.lstrip("/") or 0),
+        password=_p.password or None,
+    )
+    redis_pool = await create_pool(_rs)
     await redis_pool.enqueue_job("run_analysis", str(job.id))
-    await redis_pool.close()
+    await redis_pool.aclose()
 
     await message.answer(
         f"✅ Принято! Анализируем <b>{raw_input}</b>...\n"
